@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Laba4
 {
@@ -33,23 +34,32 @@ namespace Laba4
             {
                 if(Control.ModifierKeys == Keys.Control)//если ctrl нажат
                 {
-                    storage.CheckedObjectStorage(e);
+                    storage.MakeCheckedObjectStorage(e);
                 }
                 else//если ctrl не нажат
                 {
                     storage.AllNotChecked();
-                    storage.CheckedObjectStorage(e);
+                    storage.MakeCheckedObjectStorage(e);
                 }
             }
             this.Refresh();
         }
 
+
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = Graphics.FromImage(bmp);
-
             storage.DrawAll(pictureBox1, g, bmp);
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue==46)
+            {
+                Graphics g = Graphics.FromImage(bmp);
+                storage.removeCheckedObject(storage);
+                g.Clear(Color.White);
+            }
+        }
     }
 }
