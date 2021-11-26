@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace Laba4
 {
-    class Shape
+    class Shape//базовый класс
     {
         virtual public void draw()
         {
@@ -33,7 +33,7 @@ namespace Laba4
         }
     }
 
-    class Circle: Shape
+    class Circle: Shape//класс круга
     {
         private int x;
         private int y;
@@ -46,10 +46,7 @@ namespace Laba4
             this.r = r;
             Checked = true;
         }
-        public void Draw()
-        {
-
-        }
+       
         override public bool isClicked(MouseEventArgs e)
         {
             if (((e.X - x)*(e.X - x) + (e.Y - y) * (e.Y - y)) <= r * r)
@@ -71,7 +68,7 @@ namespace Laba4
             Checked = false;
         }
 
-        override public void Draw(PictureBox pictureBox1, Graphics g, Bitmap bmp)
+        override public void Draw(PictureBox pictureBox1, Graphics g, Bitmap bmp)//метод, который рисует круг 
         {
             Rectangle rect = new Rectangle(x - r, y - r, r * 2, r * 2);
             Pen pen;
@@ -92,7 +89,7 @@ namespace Laba4
         }
     }
 
-    class MyStorage
+    class MyStorage//класс хранилища
     {
         private int size;
         Shape[] storage;
@@ -155,7 +152,7 @@ namespace Laba4
             }
         }
 
-        public void removeObject(int i)
+        public void removeObject(int i)//удаление объекта
         {
             if (size != 0 && i<size && size!=0)
             {
@@ -178,7 +175,7 @@ namespace Laba4
             }
         }
 
-        public void removeCheckedObject(MyStorage storage)
+        public void removeCheckedObject(MyStorage storage)//удаление выделенных объектов
         {
             for(int i = 0; i < size; i++)
             {
